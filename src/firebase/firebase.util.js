@@ -19,8 +19,6 @@ const config = {
 
     const snapShot = await userRef.get();
     
-    console.log(snapShot);
-
     if(!snapShot.exists) {
         const {displayName, email } = userAuth;
         const createdAt = new Date();
@@ -37,7 +35,7 @@ const config = {
         }
     }
 
-    return userRef;
+    return userRef; 
 
   }
 
