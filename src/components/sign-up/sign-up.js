@@ -33,8 +33,10 @@ class SignUp extends React.Component {
         try {
 
             //Create the user in firebase and then create the user document
-            const userAuth = await auth.createUserWithEmailAndPassword(email, password);
-            await createUserProfileDocument(userAuth, {displayName});
+            const { user } = await auth.createUserWithEmailAndPassword(email, password);
+
+            console.log(user);
+            await createUserProfileDocument(user, { displayName });
             
             //clear the form
             this.setState({
@@ -70,6 +72,7 @@ class SignUp extends React.Component {
                         value={displayName}
                         onChange={this.handleChange}
                         required
+                        label= 'Name'
                     />
                     <FormInput
                         type='email'
@@ -77,6 +80,7 @@ class SignUp extends React.Component {
                         value={email}
                         onChange={this.handleChange}
                         required
+                        label='Email'
                     />
                     <FormInput
                         type='password'
@@ -84,6 +88,7 @@ class SignUp extends React.Component {
                         value={password}
                         onChange={this.handleChange}
                         required
+                        label='Password'
                     />
                     <FormInput
                         type='password'
@@ -91,6 +96,7 @@ class SignUp extends React.Component {
                         value={confirmPassword}
                         onChange={this.handleChange}
                         required
+                        label='Confirm Password'
                     />
 
                     <CustomButton type='submit'>SIGN UP</CustomButton>
